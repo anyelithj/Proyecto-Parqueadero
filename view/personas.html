@@ -23,10 +23,10 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Cedula</span>
                 </div>
-                <input  v-model="cedula" type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1">
+                <input  v-model="id" type="text" class="form-control" placeholder="Numero" aria-label="Username" aria-describedby="basic-addon1">
                 
             </div>
-                <span class="error" style="color:red" v-if="error">Ingrese la cedula</span>
+            
             
         </div>
 
@@ -35,22 +35,13 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Nombre</span>
                 </div>
-                <input  v-model="empleado" type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
+                <input  v-model="name" type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
                
             </div>
-            <span class="error" style="color:red" v-if="error3">Ingrese el nombre</span>
+           
         </div>
 
-        <div class="col">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">edad</span>
-                </div>
-                <input  v-model="horas_Trabajadas" type="number" class="form-control" placeholder="Valor" aria-label="Username" aria-describedby="basic-addon1">
-                
-            </div>
-            <span class="error" style="color:red" v-if="error4">Ingrese la edad</span>
-        </div>
+       
 
         <div class="col">
 
@@ -58,19 +49,61 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Sexo</span>
                 </div>
-                <select v-model="genero"  @change = "getIndex($event)"  class="form-select" aria-label="Default select example">
+                <select v-model="gender"  @change = "getIndex($event)"  class="form-select" aria-label="Default select example">
                     <option v-for="(item,index) in sexo" v-text="item.tipo" ></option>
                    
                 </select>
                
             </div>
-             <span class="error" style="color:red" v-if="error2">Seleccione un tipo de sexo</span>
+         
         </div>
 
-        <div class="col">
-            <button type="button" class="btn btn-info" @click="calcular">Agregar</button>
-        </div>
+        
+        
     </div>
+    
+        <div class="row">
+            
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">edad</span>
+                    </div>
+                    <input  v-model="age" type="number" class="form-control" placeholder="Valor" aria-label="Username" aria-describedby="basic-addon1">
+                    
+                </div>
+          
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Telefono</span>
+                    </div>
+                    <input  v-model="phone" type="number" class="form-control" placeholder="Telefono" aria-label="Username" aria-describedby="basic-addon1">
+                    
+                </div>
+        
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">email</span>
+                    </div>
+                    <input  v-model="email" type="email" class="form-control" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
+                    
+                </div>
+           
+            </div>
+            
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-info" @click="calculate">Agregar</button>
+        </div>
+
+
+        
 
     <div>
         <table class="table  mt-4">
@@ -83,20 +116,21 @@
                 <th scope="col">Edad</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Email</th>
+                <th scope="col">Eliminar</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(item,index)  in empleados">
+            <tr v-for="(item,index)  in people">
                 <th scope="row"></th>
-                <td  v-text="item.cedula">Mark</td>
-                <td v-text="item.nombre">Otto</td>
-                <td v-text="item.genero">@mdo</td>
-                <td v-text = "item.edad"> ad</td>
-                <td v-text = "item.telefono"> ad</td>
+                <td v-text="item.id">Mark</td>
+                <td v-text="item.name">Otto</td>
+                <td v-text="item.gender">@mdo</td>
+                <td v-text = "item.age"> ad</td>
+                <td v-text = "item.phone"> ad</td>
                 <td v-text = "item.email"> ad</td>
 
                 <td>
-                    <button type="button" class="btn btn-danger" @click ="eliminar(item,index)">Eliminar</button>
+                    <button type="button" class="btn btn-danger" @click ="deleteRegister(item,index)">Eliminar</button>
                 </td>
 
             </tr>
