@@ -83,25 +83,25 @@ var app = new Vue({
             this.phone=""
 
         },
-        eliminarDatos(data, index) {
+        deleteRegister(data, index) {
             Swal.fire({
-              title: "Esta seguro de eliminar?",
-              text: "Este proceso es irreversible!",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "SI",
-              cancelButtonText: "NO",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.people.splice(index, 1);
-                this.mensaje(
-                  "Se elimino correctamente",
-                  3000,
-                  "center",
-                  "Este proceso es irreversible!"
-                );
+                title: "¿Está seguro de eliminar?",
+                text: "¡Este proceso es irreversible!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "SI",
+                cancelButtonText: "NO",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.people.splice(index,1);
+                  this.mensaje(
+                    "Se eliminó correctamente",
+                    3000,
+                    "center",
+                    "¡Este proceso es irreversible!"
+                  );
               }
             });
     },
