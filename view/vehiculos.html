@@ -103,6 +103,7 @@
             <table class="table  mt-4">
                 <thead class="bg-dark text-white">
                     <tr>
+                        <th scope="col">Item</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Marca</th>
@@ -114,7 +115,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item,index) in vehicles">
-                     
+                        <td v-text="item.index"></td>
                         <td v-text="item.model"></td>
                         <td v-text="item.name"></td>
                         <td v-text="item.brand"></td>

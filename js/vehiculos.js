@@ -9,6 +9,7 @@ var app = new Vue({
     displacement: "",
     vehicles: [],
     index: 0,
+    index2:1,
     error1: false,
     error2: false,
     error3: false,
@@ -82,6 +83,7 @@ var app = new Vue({
                   this.getErrorDisplacement();
         } else {
                   this.vehicles.push({
+                    index:this.index2++,
                     model: this.model,
                     name: this.name,
                     brand: this.brand,
