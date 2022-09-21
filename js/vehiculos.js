@@ -71,36 +71,52 @@ var app = new Vue({
     addVehicles() {
         if (this.model =="") {
         this.getErrorModel();
+        }else{
+            this.getErrorModel();
         } if (this.name =="") {
           this.getErrorName();
-        } if(this.brand =="") {
+        } else{
+            this.getErrorName();
+        }
+        if(this.brand =="") {
+            this.getErrorBrand();
+        }else{
             this.getErrorBrand();
         } if(this.color == "") {
               this.getErrorColor();
-        }  if(this.licensePlate == "") {
+        } else{
+            this.getErrorColor();
+        } if(this.licensePlate == "") {
                 this.getErrorLicensePlate();
+        }else{
+            this.getErrorLicensePlate();
         }  if(this.displacement == "") {
-                  this.getErrorDisplacement();
-        } else {
-                  this.vehicles.push({
-                    index:this.index2++,
-                    model: this.model,
-                    name: this.name,
-                    brand: this.brand,
-                    color: this.color,
-                    licensePlate: this.licensePlate,
-                    displacement: this.displacement,
-                  });
-        this.clearBoxes()
+            this.getErrorDisplacement();
+        }else{
+            this.getErrorDisplacement();
+        }if(this.error1==false && this.error2==false && this.error3==false && this.error4==false && this.error5==false && this.error6==false){
+            this.vehicles.push({
+            index:this.index2++,
+            model: this.model,
+            name: this.name,
+            brand: this.brand,
+            color: this.color,
+            licensePlate: this.licensePlate,
+            displacement: this.displacement,
+            });
+            this.message("Se guardo correctamente", 3000, "center");
+            this.clearBoxes()
         }
+       
+        
     },
     getIndex(evt) {
       this.index = evt.target.selectedIndex;
     },
     deleteEmployee(index) {
       Swal.fire({
-        title: "Esta seguro de eliminar?",
-        text: "Este proceso es irreversible!",
+        title: "¿Está seguro de eliminar?",
+        text: "¡Este proceso es irreversible!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -110,14 +126,24 @@ var app = new Vue({
       }).then((result) => {
         if (result.isConfirmed) {
             this.vehicles.splice(index, 1);
-          this.mensaje(
-            "Se elimino correctamente",
+          this.message(
+            "Se eliminó correctamente",
             3000,
             "center",
-            "Este proceso es irreversible!"
+            "¡Este proceso es irreversible!"
           );
         }
       });
+    },
+    message(msj,time,position,text){
+        Swal.fire({
+          position: position,
+          text: text,
+          icon: "success",
+          title: msj,
+          showConfirmButton: false,
+          timer: time,
+        });
     },
   },
 });
