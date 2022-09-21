@@ -128,11 +128,11 @@ var app = new Vue({
                     
                 });
                 this.mensaje("Se guardo correctamente", 3000, "center");
-          
+                this.clearInputs()
             }
 
             
-            this.clearInputs()
+           
             },
             mensaje(msj,time,position,text){
                 Swal.fire({
