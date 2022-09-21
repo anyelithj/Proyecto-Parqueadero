@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div class="my-3 mx-5 ">
+        <a href="../index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+        </svg>
+        </a>
+        <span>Regresar</span>
+    </div>
+    <div class="container justify-content-center text-center shadow-lg p-3 mb-5 mt-4 bg-body rounded" id="app01">
+        <div class="row mb-4">
+            <h1>Registrar vehículo</h1>
+        </div>
+        <div class="row">
+
+            <div class="col">
+                <div class="input-group mb-3">
+
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Modelo</span>
+                    </div>
+                    <input v-model="model" type="text" class="form-control" placeholder="Modelo" aria-label="Username"
+                        aria-describedby="basic-addon1">
+
+                </div>
+
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                    </div>
+                    <input v-model="name" type="text" class="form-control" placeholder="Nombre"
+                        aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Marca</span>
+                    </div>
+                    <input v-model="brand" type="text" class="form-control" placeholder="Marca"
+                        aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Color</span>
+                    </div>
+                    <input v-model="color" type="text" class="form-control" placeholder="Color"
+                        aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Placa</span>
+                    </div>
+                    <input v-model="licensePlate" type="text" class="form-control" placeholder="Placa"
+                        aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Cilindraje</span>
+                    </div>
+                    <input v-model="displacement" type="text" class="form-control" placeholder="Cilindraje"
+                        aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+
+            <div class="col">
+                <button type="button" class="btn btn-info" @click="addVehicles">Agregar</button>
+            </div>
+        </div>
+
+        <div>
+            <table class="table  mt-4">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Cilindraje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in vehicles">
+                     
+                        <td v-text="item.model"></td>
+                        <td v-text="item.name"></td>
+                        <td v-text="item.brand"></td>
+                        <td v-text="item.color"></td>
+                        <td v-text="item.licensePlate"></td>
+                        <td v-text="item.displacement"></td>
+
+                        <td>
+                            <button type="button" class="btn btn-danger" @click="deleteEmployee(index)">Eliminar</button>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./../js/vehiculos.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
