@@ -13,22 +13,22 @@ var app = new Vue({
     },
     methods: {
         addRates(){
-            this.getError()
-            this.rates.push({
-                timeRates : this.time,
-                priceRates: this.price,
-                vehicleRates: this.optionVehicle
-            })
-            this.message("Se guardo correctamente", 3000, "center");
-            this.clear()
+            this.getErrorTime();
+            this.getErrorPrice();
+            this.getErrorVehicle();
+            if(this.time === "" || this.price === "" || this.optionVehicle === "" ) {
+              
+            } else {
+                this.rates.push({
+                    timeRates : this.time,
+                    priceRates: this.price,
+                    vehicleRates: this.optionVehicle
+                })
+                this.clear()
+                this.message("Se guardo correctamente", 3000, "center");
+            }
         },
-        getError() {
-          if(this.price === "" || this.time === "" || this.optionVehicle) {
-                this.getErrorPrice();
-                this.getErrorTime();
-                this.getErrorVehicle();
-            } 
-        },
+       
         getErrorVehicle(){
             if(this.optionVehicle === "") {
                 this.errorVehicle = true;

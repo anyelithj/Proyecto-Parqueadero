@@ -27,10 +27,10 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Tiempo</span>
                 </div>
-                <input  v-model="time" type="text" class="form-control" placeholder="tiempo" aria-label="hora" aria-describedby="basic-addon1">
+                <input  v-model.number="time" type="text" class="form-control" placeholder="tiempo" aria-label="hora" aria-describedby="basic-addon1">
                 
             </div>
-                <span class="error" style="color:red" v-if="errorTime">Ingrese el tiempo</span>
+                <span class="error" style="color:red" v-if="errorTime">Los campos del tiempo no son correctos</span>
         </div>
 
         <div class="col">
@@ -40,7 +40,7 @@
                 </div>
                 <input  v-model.number="price" type="text" class="form-control" placeholder="precio" aria-label="precio" aria-describedby="basic-addon1">
             </div>
-            <span class="error" style="color:red" v-if="errorPrice">Ingrese el precio</span>
+            <span class="error" style="color:red" v-if="errorPrice">Los campos del precio no son correctos</span>
         </div>
 
         <div class="col">
@@ -53,7 +53,7 @@
                     <option v-for="(item,index) in vehicle" v-text="item" ></option> 
                 </select>
             </div>
-             <span class="error" style="color:red" v-if="errorVehicle">Seleccione un tipo de vehículo</span>
+             <span class="error" style="color:red" v-if="errorVehicle">Los campos del tipo vehículo no son correctos</span>
         </div>
         <div class="row ">
             <div class="col d-flex justify-content-center">
