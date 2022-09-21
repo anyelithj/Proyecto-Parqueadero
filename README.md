@@ -15,7 +15,7 @@ git clone https://github.com/anyelithj/Proyecto-Parqueadero.git
 ```
 
 ## Link Despliegue
-
+https://proyecto-parqueadero.vercel.app/index.html
 
 ## Tecnologias usadas
 `VUE/ BOOTSTRAP/ CSS`
