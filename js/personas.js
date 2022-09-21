@@ -25,8 +25,7 @@ var app = new Vue({
    
     methods: {
 
-        
-
+    
         getIndex(evt){
             
             this.index = evt.target.selectedIndex;

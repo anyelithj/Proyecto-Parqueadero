@@ -117,6 +117,7 @@
             <thead class="bg-dark text-white">
             <tr>
                 <th scope="col"></th>
+                <th scope="col">Item</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Género</th>
@@ -126,9 +127,10 @@
                 <th scope="col">Opción</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody v-if="people.length">
             <tr v-for="(item,index)  in people">
                 <th scope="row"></th>
+                <td  v-text="index + 1"></td>
                 <td v-text="item.id">Mark</td>
                 <td v-text="item.name">Otto</td>
                 <td v-text="item.gender">@mdo</td>
@@ -143,6 +145,12 @@
             </tr>
             
             </tbody>
+
+            <tbody v-else>
+                <tr >
+                  <td class="text-center d-flex justify-content-center"  >Tu lista de personas está vacía</td>
+                </tr>
+              </tbody>
         </table>
     </div>
 </div>
