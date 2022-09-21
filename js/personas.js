@@ -127,7 +127,7 @@ var app = new Vue({
                     gender:this.gender
                     
                 });
-                this.message("Se guardo correctamente", 3000, "center");
+                this.message("Se guardó correctamente", 3000, "center");
                 this.clearInputs()
             }
 

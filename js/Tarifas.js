@@ -25,7 +25,7 @@ var app = new Vue({
                     vehicleRates: this.optionVehicle
                 })
                 this.clear()
-                this.message("Se guardo correctamente", 3000, "center");
+                this.message("Se guardó correctamente", 3000, "center");
             }
         },
        
