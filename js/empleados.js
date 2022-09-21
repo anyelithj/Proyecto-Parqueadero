@@ -123,7 +123,7 @@ const app = new Vue({
                   this.dataEmployees.splice(i, 1)
                   this.mensaje(
                     "Se elimino correctamente",
-                    1000,
+                    800,
                     "center",
                     "Este proceso es irreversible!"
                   )
