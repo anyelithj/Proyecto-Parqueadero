@@ -34,6 +34,7 @@
                     </div>
                     <input v-model="model" type="text" class="form-control" placeholder="Modelo" aria-label="Username"
                         aria-describedby="basic-addon1">
+                        <span class="error" v-if="error1" style="color:red;">Los campos del modelo no son correctos</span>
 
                 </div>
 
@@ -46,7 +47,7 @@
                     </div>
                     <input v-model="name" type="text" class="form-control" placeholder="Nombre"
                         aria-label="Username" aria-describedby="basic-addon1">
-
+                        <span class="error" v-if="error2" style="color:red;">Los campos del nombre no son correctos</span>
                 </div>
             </div>
 
@@ -57,7 +58,7 @@
                     </div>
                     <input v-model="brand" type="text" class="form-control" placeholder="Marca"
                         aria-label="Username" aria-describedby="basic-addon1">
-
+                        <span class="error" v-if="error3" style="color:red;">Los campos de la marca no son correctos</span>
                 </div>
             </div>
         </div>
@@ -69,7 +70,7 @@
                     </div>
                     <input v-model="color" type="text" class="form-control" placeholder="Color"
                         aria-label="Username" aria-describedby="basic-addon1">
-
+                        <span class="error" v-if="error4" style="color:red;">Los campos del color no son correctos</span>
                 </div>
             </div>
 
@@ -80,7 +81,7 @@
                     </div>
                     <input v-model="licensePlate" type="text" class="form-control" placeholder="Placa"
                         aria-label="Username" aria-describedby="basic-addon1">
-
+                        <span class="error" v-if="error5" style="color:red;">Los campos de la placa no son correctos</span>
                 </div>
             </div>
             <div class="col">
@@ -90,6 +91,8 @@
                     </div>
                     <input v-model="displacement" type="text" class="form-control" placeholder="Cilindraje"
                         aria-label="Username" aria-describedby="basic-addon1">
+                        <span class="error" v-if="error6" style="color:red;">Los campos de la cilindraje no son correctos</span>
+
 
                 </div>
             </div>
@@ -97,7 +100,7 @@
         <div class="row mt-3">
 
             <div class="col">
-                <button type="button" class="btn btn-info" @click="addVehicles">Agregar</button>
+                <button type="button" class="btn btn-info col-2" @click="addVehicles">Agregar</button>
             </div>
         </div>
 
@@ -105,17 +108,19 @@
             <table class="table  mt-4">
                 <thead class="bg-dark text-white">
                     <tr>
+                        <th scope="col">Item</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Marca</th>
                         <th scope="col">Color</th>
                         <th scope="col">Placa</th>
                         <th scope="col">Cilindraje</th>
+                        <th scope="col">Opción</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="vehicles.length">
                     <tr v-for="(item,index) in vehicles">
-                     
+                        <td v-text="item.index"></td>
                         <td v-text="item.model"></td>
                         <td v-text="item.name"></td>
                         <td v-text="item.brand"></td>
@@ -127,6 +132,12 @@
                             <button type="button" class="btn btn-danger" @click="deleteEmployee(index)">Eliminar</button>
                         </td>
 
+                    </tr>
+
+                </tbody>
+                <tbody v-else>
+                    <tr>
+                        <td class="text-center d-flex justify-content-center">Tu lista de vehículos está vacía</td>
                     </tr>
 
                 </tbody>
@@ -146,6 +157,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
