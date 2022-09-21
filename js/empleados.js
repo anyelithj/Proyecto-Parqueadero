@@ -33,6 +33,7 @@ const app = new Vue({
     },
     methods: { 
         addEmployeesData() {
+            
             this.validateInputs()? this.error:this.createRegister();
         },
         createRegister(){
@@ -45,6 +46,7 @@ const app = new Vue({
                 position: this.employeePosition,
             })
             this.cleanInputs()
+            this.message('Se guardó correctamente',1600,'center','')
         },
         cleanInputs() {
             this.employeeName=""
@@ -56,7 +58,7 @@ const app = new Vue({
             this.positionEmployee= ""
         },
         validateInputs() {
-            error =false;
+            error = false;
           if (this.employeeName === "") {
             this.errors.name = true;
             error = true;
@@ -95,23 +97,21 @@ const app = new Vue({
           }
           return error;
         },
-        deleteUser(){
-            this.dataEmployees.splice(i,1)
-        },
-        mensaje(msj,time,position,text){
+        
+        message(title,timer,position,text){
             Swal.fire({
-              position: position,
-              text: text,
+              position,
+              text,
               icon: "success",
-              title: msj,
+              title,
               showConfirmButton: false,
-              timer: time,
+              timer
             })
     },
         alert(i,msg) {
             Swal.fire({
-                title: "Esta seguro de eliminar?",
-                text: "Este proceso es irreversible!",
+                title: "¿Está seguro de eliminar?",
+                text: "¡Este proceso es irreversible!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -121,11 +121,11 @@ const app = new Vue({
               }).then((result) => {
                 if (result.isConfirmed) {
                   this.dataEmployees.splice(i, 1)
-                  this.mensaje(
-                    "Se elimino correctamente",
-                    800,
+                  this.message(
+                    "Se eliminó correctamente",
+                    1600,
                     "center",
-                    "Este proceso es irreversible!"
+                    "¡Este proceso es irreversible!"
                   )
                 }
               })
