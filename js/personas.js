@@ -96,7 +96,7 @@ var app = new Vue({
               }).then((result) => {
                 if (result.isConfirmed) {
                   this.people.splice(index,1);
-                  this.mensaje(
+                  this.message(
                     "Se eliminó correctamente",
                     3000,
                     "center",
@@ -127,14 +127,14 @@ var app = new Vue({
                     gender:this.gender
                     
                 });
-                this.mensaje("Se guardo correctamente", 3000, "center");
+                this.message("Se guardo correctamente", 3000, "center");
                 this.clearInputs()
             }
 
             
            
             },
-            mensaje(msj,time,position,text){
+            message(msj,time,position,text){
                 Swal.fire({
                   position: position,
                   text: text,
