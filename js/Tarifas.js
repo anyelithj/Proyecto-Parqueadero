@@ -3,28 +3,89 @@ var app = new Vue({
     data: {
         time: "",
         price: "",
-        optionVehicle: null,
+        optionVehicle: "",
         rates: [],
         error: false,
-        vehicle: ["carro", "moto", "bicicleta"],
+        errorPrice: false,
+        errorTime: false,
+        errorVehicle: false,
+        vehicle: ["Carro", "Moto", "Bicicleta"],
     },
     methods: {
         addRates(){
-          this.rates.push({
-            timeRates : this.time,
-            priceRates: this.price,
-            vehicleRates: this.optionVehicle
-          })
-          this.clear()
+            this.getError()
+            this.rates.push({
+                timeRates : this.time,
+                priceRates: this.price,
+                vehicleRates: this.optionVehicle
+            })
+            this.message("Se guardo correctamente", 3000, "center");
+            this.clear()
         },
-        deleteRates() {
-            this.rates.splice(this.index,1);
+        getError() {
+          if(this.price === "" || this.time === "" || this.optionVehicle) {
+                this.getErrorPrice();
+                this.getErrorTime();
+                this.getErrorVehicle();
+            } 
+        },
+        getErrorVehicle(){
+            if(this.optionVehicle === "") {
+                this.errorVehicle = true;
+            } else {
+                this.errorVehicle = false;
+            }
+        },
+        getErrorPrice() {
+            if(this.price === "") {
+                this.errorPrice = true;
+            } else {
+                this.errorPrice = false;
+            }
+        },
+        getErrorTime(){
+            if(this.time === "") {
+                this.errorTime = true;
+            } else {
+                this.errorTime = false;
+            }
         },
         clear() {
             this.time = "",
             this.price = "",
-            this.vehicle = "",
             this.optionVehicle= ""
         }, 
+        message(msj,time,position,text){
+            Swal.fire({
+              position: position,
+              text: text,
+              icon: "success",
+              title: msj,
+              showConfirmButton: false,
+              timer: time,
+            });
+        },
+        deleteRates(index) {
+            Swal.fire({
+                title: "¿Está seguro de eliminar?",
+                text: "¡Este proceso es irreversible!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "SI",
+                cancelButtonText: "NO",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.rates.splice(index,1);
+                  this.message(
+                    "Se eliminó correctamente",
+                    3000,
+                    "center",
+                    "¡Este proceso es irreversible!"
+                  );
+                }
+              });
+        }
     }
 })
