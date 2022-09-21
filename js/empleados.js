@@ -8,7 +8,7 @@ const app = new Vue({
             age: false,
             sex: false,
             position: false,
-            error: true
+            error: false
             
 
         },
@@ -33,14 +33,7 @@ const app = new Vue({
     },
     methods: { 
         addEmployeesData() {
-            this.validateInputs() 
-            console.log('[error] '+this.errors.error)
-            console.log('[Position]' + this.errors.position);
-
-            if(!this.errors.error) {
-                this.createRegister()
-            }
-            
+            this.validateInputs()? this.error:this.createRegister();
         },
         createRegister(){
             this.dataEmployees.push({
@@ -54,64 +47,55 @@ const app = new Vue({
             this.cleanInputs()
         },
         cleanInputs() {
-            this.employeeName="",
-            this.employeeLastName= "",
-            this.employeeIdentityCard= "",
-            this.employeePosition= "",
-            this.age= "",
+            this.employeeName=""
+            this.employeeLastName= ""
+            this.employeeIdentityCard= ""
+            this.employeePosition= ""
+            this.age= ""
             this.defaultemployeeSex = 0
             this.positionEmployee= ""
         },
-        validateInputs(){
-        if(this.employeeName === "")  {
+        validateInputs() {
+            error =false;
+          if (this.employeeName === "") {
             this.errors.name = true;
-            this.errors.error = true
-        }else {
+            error = true;
+          } else {
             this.errors.name = false;
-            this.errors.error = false
-        } if(this.employeeLastName === "" ){
+          }
+          if (this.employeeLastName === "") {
             this.errors.lastName = true;
-            this.errors.error = true
-        }
-        else {
+            error = true;
+          } else {
             this.errors.lastName = false;
-            this.errors.error = false
-        }
-        if(this.employeeIdentityCard === "" ){
+          }
+          if (this.employeeIdentityCard === "") {
             this.errors.identity = true;
-            this.errors.error = true
-        }
-        else {
+            error = true;
+          } else {
             this.errors.identity = false;
-            this.errors.error = false
-        }
-        if(this.employeePosition === "" ) {
+          }
+          if (this.employeePosition === "") {
             this.errors.position = true;
-            this.errors.error = true
-        }
-        else {
+            error = true;
+          } else {
             this.errors.position = false;
-            this.errors.error = false
-        }
-        if(this.age === "" ){
+          }
+          if (this.age === "") {
             this.errors.age = true;
-            this.errors.error = true
-        }
-        else {
+            error = true;
+          } else {
             this.errors.age = false;
-            this.errors.error = false
-        }
-        if(this.defaultemployeeSex == 0 ){
+          }
+          if (this.defaultemployeeSex == "") {
             this.errors.sex = true;
-            this.errors.error = true
-        } 
-        else {
+            error = true;
+          } else {
             this.errors.sex = false;
-            this.errors.error = false
-        }
-        return this.errors.error
+          }
+          return error;
         },
-        deleteUser(i){
+        deleteUser(){
             this.dataEmployees.splice(i,1)
         },
         mensaje(msj,time,position,text){
@@ -124,7 +108,7 @@ const app = new Vue({
               timer: time,
             })
     },
-        alert(msg) {
+        alert(i,msg) {
             Swal.fire({
                 title: "Esta seguro de eliminar?",
                 text: "Este proceso es irreversible!",
@@ -136,10 +120,10 @@ const app = new Vue({
                 cancelButtonText: "NO",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  this.dataEmployees.splice(index, 1)
+                  this.dataEmployees.splice(i, 1)
                   this.mensaje(
                     "Se elimino correctamente",
-                    3000,
+                    1000,
                     "center",
                     "Este proceso es irreversible!"
                   )
