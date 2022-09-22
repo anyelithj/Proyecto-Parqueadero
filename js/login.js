@@ -7,10 +7,38 @@ const app = new Vue({
             {name: "anyelithj", password: '43891v569'},
             {name: "drbobby27", password: '23a138'},
             {name: "chessbase24", password: '328y46910'},
-        ]
+        ],
+        error: false,
+        error2: false,
     },
     methods: {
+          getError(){
+            if(this.username==''){
+              this.error=true;
+            }else{
+              this.error=false;
+            }
+          },
+          getError2(){
+            if(this.password == ''){
+              this.error2=true;
+            }else{
+              this.error2=false;
+            }
+          },
+          login(){
+              this.getError();
+              this.getError2();
+              if(this.error == true || this.error2 == true ){
+                
+
+              }else{
+                  
+                
+              }
+          },
         validateCredentials(user, key){
+            this.login();
             let loguedUser = []
             let res = this.userCredentials.filter(usr => usr.name === user.toLowerCase() && usr.password === key )
               loguedUser = [...res]
