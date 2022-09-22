@@ -29,13 +29,6 @@ const app = new Vue({
           login(){
               this.getError();
               this.getError2();
-              if(this.error == true || this.error2 == true ){
-                
-
-              }else{
-                  
-                
-              }
           },
         validateCredentials(user, key){
             this.login();
