@@ -30,11 +30,19 @@ const app = new Vue({
         defaultemployeeSex: 0,
         employeeSex: ['Hombre', 'Mujer', 'Binario'],
         dataEmployees: [],  
+        STORAGE_KEY: "setDataStorage"
+    },
+
+    created(){
+      this.dataEmployees = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]')
     },
     methods: { 
+        updateLocalStorage(){
+          return localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.dataEmployees))
+        },
         addEmployeesData() {
             
-            this.validateInputs()? this.error:this.createRegister();
+            this.validateInputs() ? this.error : this.createRegister()
         },
         createRegister(){
             this.dataEmployees.push({
@@ -45,6 +53,9 @@ const app = new Vue({
                 sex: this.defaultemployeeSex,
                 position: this.employeePosition,
             })
+
+            this.updateLocalStorage()
+            
             this.cleanInputs()
             this.message('Se guardó correctamente',1600,'center','')
         },
@@ -127,6 +138,7 @@ const app = new Vue({
                     "center",
                     "¡Este proceso es irreversible!"
                   )
+                  this.updateLocalStorage()
                 }
               })
         }
