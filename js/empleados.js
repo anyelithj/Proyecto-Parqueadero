@@ -30,11 +30,16 @@ const app = new Vue({
         defaultemployeeSex: 0,
         employeeSex: ['Hombre', 'Mujer', 'Binario'],
         dataEmployees: [],  
+        STORAGE_KEY: "setDataStorage"
+    },
+
+    created(){
+      this.dataEmployees = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]')
     },
     methods: { 
         addEmployeesData() {
             
-            this.validateInputs()? this.error:this.createRegister();
+            this.validateInputs() ? this.error : this.createRegister()
         },
         createRegister(){
             this.dataEmployees.push({
@@ -45,6 +50,9 @@ const app = new Vue({
                 sex: this.defaultemployeeSex,
                 position: this.employeePosition,
             })
+
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.dataEmployees))
+            
             this.cleanInputs()
             this.message('Se guardó correctamente',1600,'center','')
         },
