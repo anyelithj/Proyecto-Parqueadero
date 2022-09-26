@@ -68,6 +68,7 @@ var app = new Vue({
         (this.licensePlate = ""),
         (this.displacement = "");
     },
+    
     addVehicles() {
         if (this.model =="") {
         this.getErrorModel();
@@ -104,11 +105,15 @@ var app = new Vue({
             licensePlate: this.licensePlate,
             displacement: this.displacement,
             });
+            this.updateLocalStorage()
             this.message("Se guardó correctamente", 3000, "center");
-            this.clearBoxes()
+            this.clearBoxes();
         }
        
         
+    },
+    updateLocalStorage() {
+      localStorage.setItem("intento100",JSON.stringify(this.vehicles));
     },
     getIndex(evt) {
       this.index = evt.target.selectedIndex;
@@ -145,5 +150,14 @@ var app = new Vue({
           timer: time,
         });
     },
+  },
+
+  
+  created() {
+    if (localStorage.getItem("intento100") !== null) {
+      this.vehicles = JSON.parse(localStorage.getItem("intento100"));
+    } else {
+      this.vehicles = this.vehicles;
+    }
   },
 });

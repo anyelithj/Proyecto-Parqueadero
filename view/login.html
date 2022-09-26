@@ -16,13 +16,13 @@
 </head>
 
 <body>
-    <div class="container my-5 rounded" id="app">
+    <div class="container my-2 rounded" id="app">
 
         <div class="row">
             
                 <div class="container-fluid h-custom ">
                     <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col my-5 rounded" id="imagen">
+                        <div class="col my-5 rounded d-none d-md-none d-lg-block" id="imagen">
                             
                         </div>
                         <div class="col  rounded" id="form">
@@ -31,7 +31,7 @@
                                     <h1 class=" text-center">Iniciar sesión </h1>
                                     
                                 </div>
-                                <div class=" d-flex flex-row text-center  mb-3" id="user">
+                                <div class=" d-flex flex-row text-center  mb-3 " id="user">
                                  
                                     <img src="https://i.ibb.co/vd1kyxW/pngwing-com-1.png"/>
                                 </div>
@@ -45,7 +45,7 @@
                                     
                                     <input v-model="username" type="email" id="form3Example3" class="form-control form-control-lg"
                                         placeholder="Ingresar email " />
-                                        <span class="error" style="color: red" v-if="error">Los campos de Correo no son correctos</span>
+                                        <span class="error" style="color: red" v-if="error">El campo correo no puede estar vacío</span>
                                 </div>
 
                                 
@@ -55,13 +55,13 @@
                                     <input v-model="password" type="password" id="form3Example4" class="form-control form-control-lg"
                                         placeholder="Ingresar contraseña " />
                                     
-                                    <span class="error" style="color: red" v-if="error2">Los campos de contraseña no son correctos</span>
+                                    <span class="error" style="color: red" v-if="error2">El campo contraseña no puede estar vacío</span>
                                 </div>
                                 
-                                <div class="row">
-                                    <div class="col-12 text-center">
+                                <div class="row ps-2 pe-2">
+                                    
                                         <button  @click="validateCredentials(username,password)"class="btn btn-info btn-lg" type="button">Enviar</button>
-                                    </div>
+                                    
                                 </div>
                                     
                                     

@@ -5,6 +5,7 @@ var app = new Vue({
         price: "",
         optionVehicle: "",
         rates: [],
+        rateStorang: [],
         error: false,
         errorPrice: false,
         errorTime: false,
@@ -24,11 +25,15 @@ var app = new Vue({
                     priceRates: this.price,
                     vehicleRates: this.optionVehicle
                 })
+                this.updateLocalStorage(this.rates)
+                console.log(this.rates)
                 this.clear()
                 this.message("Se guardó correctamente", 3000, "center");
             }
         },
-       
+       updateLocalStorage() {
+            localStorage.setItem("dataStorageRates", JSON.stringify(this.rates))
+       },
         getErrorVehicle(){
             if(this.optionVehicle === "") {
                 this.errorVehicle = true;
@@ -86,6 +91,14 @@ var app = new Vue({
                   );
                 }
               });
+        },
+
+    },
+    created() {
+        if(localStorage.getItem("dataStorageRates") !== null) {
+            this.rateStorang = JSON.parse(localStorage.getItem("dataStorage"))
+        } else {
+            this.rateStorang = this.rates
         }
     }
 })
