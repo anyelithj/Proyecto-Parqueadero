@@ -135,6 +135,7 @@ const app = new Vue({
                     "center",
                     "¡Este proceso es irreversible!"
                   )
+                  localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.dataEmployees))
                 }
               })
         }
