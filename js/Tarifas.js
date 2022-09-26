@@ -26,7 +26,6 @@ var app = new Vue({
                     vehicleRates: this.optionVehicle
                 })
                 this.updateLocalStorage(this.rates)
-                console.log(this.rates)
                 this.clear()
                 this.message("Se guardó correctamente", 3000, "center");
             }
