@@ -7,6 +7,7 @@ var app = new Vue({
     color: "",
     licensePlate: "",
     displacement: "",
+    entryTime:0,
     vehicles: [],
     index: 0,
     index2:1,
@@ -16,8 +17,13 @@ var app = new Vue({
     error4: false,
     error5: false,
     error6: false,
+    error7: false,
+    optionVehicles:["Carro", "Moto", "Bicicleta"],
+    optionVehicle:"",
+
   },
   methods: {
+
     getErrorModel() {
       if (this.model == "") {
         this.error1 = true;
@@ -26,7 +32,7 @@ var app = new Vue({
       }
     },
     getErrorName() {
-      if (this.name == "") {
+      if (this.optionVehicle == "") {
         this.error2 = true;
       } else {
         this.error2 = false;
@@ -60,13 +66,22 @@ var app = new Vue({
         this.error6 = false;
       }
     },
+    getErrorTime() {
+      if (this.entryTime == "") {
+        this.error7 = true;
+      } else {
+        this.error7 = false;
+      }
+    },
+    
     clearBoxes() {
       (this.model = ""),
-        (this.name = ""),
+        (this.optionVehicle = ""),
         (this.brand = ""),
         (this.color = ""),
         (this.licensePlate = ""),
         (this.displacement = "");
+        (this.entryTime = "");
     },
     
     addVehicles() {
@@ -74,7 +89,7 @@ var app = new Vue({
         this.getErrorModel();
         }else{
             this.getErrorModel();
-        } if (this.name =="") {
+        } if (this.optionVehicle =="") {
           this.getErrorName();
         } else{
             this.getErrorName();
@@ -95,15 +110,20 @@ var app = new Vue({
             this.getErrorDisplacement();
         }else{
             this.getErrorDisplacement();
-        }if(this.error1==false && this.error2==false && this.error3==false && this.error4==false && this.error5==false && this.error6==false){
+        }if(this.entryTime == "") {
+            this.getErrorTime();
+        }else{
+            this.getErrorTime();
+        }if(this.error1==false && this.error2==false && this.error3==false && this.error4==false && this.error5==false && this.error6==false && this.error6==false){
             this.vehicles.push({
             index:this.index2++,
             model: this.model,
-            name: this.name,
+            name: this.optionVehicle,
             brand: this.brand,
             color: this.color,
             licensePlate: this.licensePlate,
             displacement: this.displacement,
+            time:this.entryTime,
             });
             this.updateLocalStorage()
             this.message("Se guardó correctamente", 3000, "center");
@@ -131,6 +151,7 @@ var app = new Vue({
       }).then((result) => {
         if (result.isConfirmed) {
             this.vehicles.splice(index, 1);
+            this.updateLocalStorage();
           this.message(
             "Se eliminó correctamente",
             3000,
@@ -138,6 +159,7 @@ var app = new Vue({
             "¡Este proceso es irreversible!"
           );
         }
+
       });
     },
     message(msj,time,position,text){
