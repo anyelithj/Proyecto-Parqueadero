@@ -4,7 +4,7 @@ const app = new Vue({
     username: "",
     password: "",
     userCredentials: [
-      { name: "anyelithj", password: "43891v569" },
+      { name: "anyelithj", password: "43891569" },
       { name: "drbobby27", password: "23a138" },
       { name: "chessbase24", password: "328y46910" },
     ],
