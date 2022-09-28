@@ -88,6 +88,7 @@ var app = new Vue({
                     "center",
                     "¡Este proceso es irreversible!"
                   );
+                  this.updateLocalStorage();
                 }
               });
         },

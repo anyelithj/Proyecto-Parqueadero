@@ -48,14 +48,18 @@ const app = new Vue({
             "Verifique que los datos sean correctos",
             "error"
           )
-        : this.message(
-            "¡Enhorabuena!",
-            2200,
-            "center",
-            "Ingreso exitoso",
-            "success"
-          );
+        : this.Session();
     },
+    Session(){
+      this.message(
+        "¡Datos correctos!",
+        3200,
+        "center",
+        "Ingreso exito",
+        "success"
+      );
+      window.location.href = '../view/menu.html'
+},
     message(title, timer, position, text, icon) {
       Swal.fire({
         position,
