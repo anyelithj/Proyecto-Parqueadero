@@ -8,10 +8,12 @@ var app = new Vue({
       error1: false,
       error2: false,
       array1:[],
-      index:0.,
       index2:1,
-
-  
+      arrTaxes: [],
+      arrVehicles: [],
+      newArr: {},
+      VEHICLES_KEY:"intento100",
+      TARIFAS_KEY:"dataStorageRates",
     },
     methods: {
   
@@ -55,15 +57,23 @@ var app = new Vue({
                 total: this.totalToPay,
            
                 });
+                this.seeDataArr()
                 this.updateLocalStorage()
                 this.message("Se guardó correctamente", 3000, "center");
                 this.clearBoxes();
             }
-            
-            
+        },
+        seeDataArr (){
+            const [...data] = this.arrTaxes
+            const [...data2] = this.arrVehicles
+            this.newArr = [...data2, ...data]
+            console.log(this.newArr)
+
         },
         updateLocalStorage() {
-        localStorage.setItem("intento100",JSON.stringify(this.vehicles));
+            
+        this.arrTaxes = JSON.parse(localStorage.getItem(this.TARIFAS_KEY) || '[]')
+        this.arrVehicles =  JSON.parse(localStorage.getItem(this.VEHICLES_KEY) || '[]') 
         },
         getIndex(evt) {
         this.index = evt.target.selectedIndex;
@@ -104,11 +114,9 @@ var app = new Vue({
         },
     },
     created() {
-      if (localStorage.getItem("intento100") !== null) {
-        this.vehicles = JSON.parse(localStorage.getItem("intento100"));
-      } else {
-        this.vehicles = this.vehicles;
-      }
-    },
+      this.updateLocalStorage();
+      console.log(this.arrTaxes )
+      console.log(this.arrVehicles)
+    }
   });
   
