@@ -7,7 +7,7 @@ var app = new Vue({
     color: "",
     licensePlate: "",
     displacement: "",
-    entryTime:0,
+    entryTime:new Date(),
     vehicles: [],
     index: 0,
     index2:1,
@@ -23,6 +23,9 @@ var app = new Vue({
 
   },
   methods: {
+    getH(){
+      this.entryTime = this.hour.getHours()
+    },
 
     getErrorModel() {
       if (this.model == "") {
@@ -85,6 +88,7 @@ var app = new Vue({
     },
     
     addVehicles() {
+      
         if (this.model =="") {
         this.getErrorModel();
         }else{

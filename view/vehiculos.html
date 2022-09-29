@@ -102,10 +102,10 @@
         <div class="row ">
             <div class="col-4 ">
                 <div class="input-group mb-1">
-                    <div class="input-group-prepend">
+                    <div class="input-group-prepend timepicker">
                         <span class="input-group-text" id="basic-addon1">Hora entrada</span>
                     </div>
-                    <input v-model="entryTime" type="text" class="form-control" placeholder="Hora entrada"
+                    <input v-model="entryTime" type="time" class="form-control" placeholder="Hora entrada"
                         aria-label="Username" aria-describedby="basic-addon1">
                         
                         
@@ -113,6 +113,7 @@
                     <span class="error" v-if="error7" style="color:red;">Los campos de la hora no son correctos</span>
             </div>
         </div>
+        
         <div class="row mt-3">
 
             <div class="col">

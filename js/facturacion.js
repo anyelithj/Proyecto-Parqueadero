@@ -1,19 +1,22 @@
 var app = new Vue({
     el: "#app01",
     data: {
-      plate:"",
+      plate:"zeon",
+      rate:"",
       departureTime:"",
-      departureTime2:0,
+      departureTime2:new Date(),
       totalToPay:0,
       error1: false,
       error2: false,
       array1:[],
       index2:1,
       arrTaxes: [],
-      arrVehicles: [],
+      arrVehicles:"",
       newArr: {},
       VEHICLES_KEY:"intento100",
       TARIFAS_KEY:"dataStorageRates",
+      result:"",
+      result2:"",
     },
     methods: {
   
@@ -39,6 +42,7 @@ var app = new Vue({
         },
       
         addVehicles() {
+            this.seeDataArr()
             if (this.plate  =="") {
                 this.getErrorPlate();
             }else{
@@ -57,21 +61,52 @@ var app = new Vue({
                 total: this.totalToPay,
            
                 });
-                this.seeDataArr()
+                
                 this.updateLocalStorage()
                 this.message("Se guardó correctamente", 3000, "center");
                 this.clearBoxes();
             }
         },
-        seeDataArr (){
-            const [...data] = this.arrTaxes
-            const [...data2] = this.arrVehicles
-            this.newArr = [...data2, ...data]
-            console.log(this.newArr)
+        seeDataArr(){
+            let plate = this.plate;
+            
+            this.result =this.arrVehicles.find(data=>data.licensePlate === plate );
+            console.log(this.result)
+            this.departureTime = this.result.time
+
+            if(this.result.name == 'Carro'){
+                let rate = this.result.name
+                this.result2 =this.arrTaxes.find(data=>data.vehicleRates === rate);
+            
+                this.totalToPay =( parseInt(this.departureTime2.toString(),10) - parseInt(this.result.time.toString(), 10)) * this.result2.priceRates
+            
+            
+                
+            }else if (this.result.name == 'Moto'){
+                let rate = this.result.name
+                this.result2 =this.arrTaxes.find(data=>data.vehicleRates === rate);
+                
+                this.totalToPay =( parseInt(this.departureTime2.toString(),10) - parseInt(this.result.time.toString(), 10)) * this.result2.priceRates
+            
+               
+            }else if (this.result.name == 'Bicicleta'){
+                let rate = this.result.name
+                this.result2 =this.arrTaxes.find(data=>data.vehicleRates === rate);
+                
+                this.totalToPay =( parseInt(this.departureTime2.toString(),10) - parseInt(this.result.time.toString(), 10)) * this.result2.priceRates
+            
+            }
+           
+          
+            
+           
+    
+        },
+
+        transformDate(){
 
         },
-        updateLocalStorage() {
-            
+        updateLocalStorage(){
         this.arrTaxes = JSON.parse(localStorage.getItem(this.TARIFAS_KEY) || '[]')
         this.arrVehicles =  JSON.parse(localStorage.getItem(this.VEHICLES_KEY) || '[]') 
         },
@@ -90,7 +125,7 @@ var app = new Vue({
             cancelButtonText: "NO",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.vehicles.splice(index, 1);
+                    this.array1.splice(index, 1);
                     this.updateLocalStorage();
                     this.message(
                     "Se eliminó correctamente",
@@ -115,8 +150,6 @@ var app = new Vue({
     },
     created() {
       this.updateLocalStorage();
-      console.log(this.arrTaxes )
-      console.log(this.arrVehicles)
+      this.seeDataArr()
     }
   });
-  
